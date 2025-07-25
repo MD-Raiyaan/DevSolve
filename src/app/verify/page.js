@@ -1,6 +1,7 @@
+// app/verify/page.js
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { account } from "@/models/client/config";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -8,8 +9,9 @@ import { Loader2, CheckCircle, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useAuthStore } from "@/store/auth";
+import Suspended from "@/components/Suspended";
 
-const VerifyPage = () => {
+function VerifyComponent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { setVerified } = useAuthStore();
@@ -79,6 +81,12 @@ const VerifyPage = () => {
       </Card>
     </div>
   );
-};
+}
 
-export default VerifyPage;
+export default function VerifyPage() {
+  return (
+    <Suspended fallback={<div className="text-center mt-10">Loading...</div>}>
+      <VerifyComponent />
+    </Suspended>
+  );
+}
