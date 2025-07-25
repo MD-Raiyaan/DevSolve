@@ -1,13 +1,15 @@
+// app/reset-password/page.js
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { account } from "@/models/client/config";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Suspended from "@/components/Suspended";
 
-const ResetPassword = () => {
+function ResetPasswordComponent() {
   const params = useSearchParams();
   const router = useRouter();
 
@@ -64,6 +66,12 @@ const ResetPassword = () => {
       </div>
     </div>
   );
-};
+}
 
-export default ResetPassword;
+export default function ResetPasswordPage() {
+  return (
+    <Suspended fallback={<div className="text-center mt-10">Loading...</div>}>
+      <ResetPasswordComponent />
+    </Suspended>
+  );
+}
