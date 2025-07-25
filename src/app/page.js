@@ -7,6 +7,7 @@ import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import QuestionOverview from "@/components/QuestionOverview";
+import { LoaderOne } from "@/components/ui/loader";
 
 
 export const products = [
@@ -92,12 +93,15 @@ const getData=async ()=>{
 export default  function Home() {
   const [questions,setQuestions]=useState([]);
   const [contributors,setContributors]=useState([]);
+  const [isloading, setLoading] =useState(false);
   
    useEffect(() => {
      (async () => {
+       setLoading(()=>true);
        const data = await getData();
        setQuestions(data.questions);
        setContributors(data.contributors);
+       setLoading(()=>false);
      })();
    }, []);
 
@@ -113,6 +117,11 @@ export default  function Home() {
             Latest Questions
           </h2>
 
+        {isloading && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center">
+                  <LoaderOne />
+                </div>
+              )}
         <QuestionOverview questions={questions}/>
         </div>
 

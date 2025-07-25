@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import QuestionOverview from "@/components/QuestionOverview";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
-import Search from "./search";
+import Search from "./Search";
 import { ListOrdered } from "lucide-react";
-import { CustomPagination } from "@/components/customPagination";
+import { CustomPagination } from "@/components/CustomPagination";
 import { useSearchParams } from "next/navigation";
 import { Query } from "node-appwrite";
 import axios from "axios";
