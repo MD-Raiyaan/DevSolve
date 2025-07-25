@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import NotLoggedInPrompt from "@/components/NotLoggedIn";
 import { LoaderOne } from "@/components/ui/loader";
 import EmailVerificationPrompt from "@/components/EmailVerificationPrompt";
+import Suspended from "@/components/Suspended";
 
 const QUESTIONS_PER_PAGE = 3;
 
@@ -79,50 +80,54 @@ function QuestionPage() {
   };
 
   return (
-    <div className="pt-20 min-h-screen w-full bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2 text-3xl font-bold text-gray-800 dark:text-white">
-            All Questions
-            <div className="flex items-center gap-1 text-sm font-medium px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-              <ListOrdered className="h-4 w-4" />
-              {totalQuestions}
+    <Suspended>
+      <div className="pt-20 min-h-screen w-full bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+          {/* Header Section */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2 text-3xl font-bold text-gray-800 dark:text-white">
+              All Questions
+              <div className="flex items-center gap-1 text-sm font-medium px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                <ListOrdered className="h-4 w-4" />
+                {totalQuestions}
+              </div>
             </div>
+            <RainbowButton
+              size="sm"
+              className="font-bold w-full md:w-auto"
+              onClick={addQuestionHandle}
+            >
+              Ask a question
+            </RainbowButton>
           </div>
-          <RainbowButton
-            size="sm"
-            className="font-bold w-full md:w-auto"
-            onClick={addQuestionHandle}
-          >
-            Ask a question
-          </RainbowButton>
-        </div>
-        {verifyPrompt && (
-          <EmailVerificationPrompt onClose={() => setVerifyPrompt(false)} />
-        )}
-        {showPrompt && <NotLoggedInPrompt onClose={handlePromptClose} />}
-
-        {/* Search Bar */}
-        <Search />
-
-        {/* Question List */}
-        <div className="w-full space-y-6">
-          {isloading && (
-            <div className="absolute inset-0 z-20 flex items-center justify-center">
-              <LoaderOne />
-            </div>
+          {verifyPrompt && (
+            <EmailVerificationPrompt onClose={() => setVerifyPrompt(false)} />
           )}
-          <QuestionOverview questions={questions} />
-        </div>
+          {showPrompt && <NotLoggedInPrompt onClose={handlePromptClose} />}
 
-        {/* Pagination */}
-        <CustomPagination
-          totalItems={totalQuestions}
-          itemsPerPage={QUESTIONS_PER_PAGE}
-        />
+          {/* Search Bar */}
+          <Suspended>
+            <Search />
+          </Suspended>
+
+          {/* Question List */}
+          <div className="w-full space-y-6">
+            {isloading && (
+              <div className="absolute inset-0 z-20 flex items-center justify-center">
+                <LoaderOne />
+              </div>
+            )}
+            <QuestionOverview questions={questions} />
+          </div>
+
+          {/* Pagination */}
+          <CustomPagination
+            totalItems={totalQuestions}
+            itemsPerPage={QUESTIONS_PER_PAGE}
+          />
+        </div>
       </div>
-    </div>
+    </Suspended>
   );
 }
 
