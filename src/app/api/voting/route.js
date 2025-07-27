@@ -65,8 +65,8 @@ export async function POST(request) {
       await user.updatePrefs(questionOranswer.authorId, {
         reputation:
           voteStatus === "upvoted"
-            ? Number(prefs.reputation) - 1
-            : Number(prefs.reputation) + 1,
+            ? Number(prefs.reputation) +1
+            : Number(prefs.reputation) -1,
       });
     }
 

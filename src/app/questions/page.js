@@ -15,7 +15,7 @@ import { LoaderOne } from "@/components/ui/loader";
 import Search from "./Search";
 import Suspended from "@/components/Suspended";
 
-const QUESTIONS_PER_PAGE = 3;
+const QUESTIONS_PER_PAGE = 25;
 
 function QuestionPageContent() {
   const [questions, setQuestions] = useState([]);
