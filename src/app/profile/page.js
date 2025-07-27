@@ -185,16 +185,6 @@ const ProfilePage = () => {
                   className="bg-background/70 backdrop-blur-md border border-border rounded-2xl shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-xl"
                 >
                   <CardContent className="p-6 space-y-3">
-                    <div className="flex justify-between items-start">
-                      <div className="text-lg font-semibold text-foreground">
-                        {a.title}
-                      </div>
-                      <Link href={`/answers/${a.$id}/edit`}>
-                        <Button size="icon" variant="ghost">
-                          <Pencil className="w-4 h-4 text-muted-foreground hover:text-primary" />
-                        </Button>
-                      </Link>
-                    </div>
                     <MarkdownViewer content={a.content} />
                   </CardContent>
                 </Card>

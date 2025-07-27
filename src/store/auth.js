@@ -48,6 +48,7 @@ export const useAuthStore = create(
           }
 
           set({ session, user, jwt });
+          set({verified:user.emailVerification})
 
           toast.success("Logged in successfully !!!");
 
