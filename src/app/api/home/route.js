@@ -41,10 +41,10 @@ export async function GET(){
         const allUsers = await user.list();
 
         const contributors = allUsers.users
-          .sort((a, b) => a.prefs.reputation ?? 0  - b.prefs.reputation ?? 0)
+          .sort((a, b) => a.prefs.reputation > b.prefs.reputation)
           .slice(0, 10)
           .map((user) => {
-            return { name: user.name, reputation: user.prefs.reputation ?? 0 };
+            return { name: user.name, reputation: user.prefs.reputation };
           });
 
 

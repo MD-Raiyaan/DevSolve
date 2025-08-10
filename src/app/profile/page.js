@@ -126,7 +126,6 @@ const ProfilePage = () => {
           <h2 className="text-2xl font-bold">{User.name}</h2>
           <p className="text-sm text-gray-500">{User.email}</p>
           <div className="flex flex-wrap gap-3 mt-3 justify-center md:justify-start">
-            <Badge>Reputation: {(User.reputation || 0)}</Badge>
             <Badge variant="secondary">Votes: {User.votes}</Badge>
             <Badge variant="outline">
               Questions: {User.questionsAsked.length}

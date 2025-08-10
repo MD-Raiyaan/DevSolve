@@ -37,14 +37,12 @@ export const useAuthStore = create(
             email,
             password
           );
-          const user = await account.get();
+          let user = await account.get();
           const jwt = await account.createJWT();
 
-          if (!user.prefs?.reputation) {
+          if (user.prefs?.reputation === undefined) {
             await account.updatePrefs({ reputation: 0 });
-          }
-          if (!user.prefs?.avatar) {
-            await account.updatePrefs({ avatar: "" });
+            user = await account.get();
           }
 
           set({ session, user, jwt });

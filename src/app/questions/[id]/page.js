@@ -134,7 +134,7 @@ const QuestionPage = () => {
         setVerifyPrompt(true);
         return;
       }
-      router.push("/question/create");
+      router.push("/questions/create");
   }
 
   return (

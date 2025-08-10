@@ -41,7 +41,10 @@ export default function Navbar({ className }) {
   }
 
   const verifyUser=async()=>{
-    console.log(`${env.domain}/verify`);
+    if(!session){
+       toast.error("Please Login / Sign up to verify your account ")
+       return null;
+    }
     const promise= account.createVerification(`${env.domain}/verify`);
 
      promise.then(function (response) {
@@ -91,7 +94,7 @@ export default function Navbar({ className }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={logout}>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={handleLogout}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

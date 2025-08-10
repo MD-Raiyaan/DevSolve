@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import QuestionOverview from "@/components/QuestionOverview";
 import { LoaderOne } from "@/components/ui/loader";
+import { useAuthStore } from "@/store/auth";
 
 
 export const products = [
@@ -94,6 +95,8 @@ export default  function Home() {
   const [questions,setQuestions]=useState([]);
   const [contributors,setContributors]=useState([]);
   const [isloading, setLoading] =useState(false);
+  const {user}=useAuthStore();
+  console.log("user : ",user);
   
    useEffect(() => {
      (async () => {
@@ -139,9 +142,6 @@ export default  function Home() {
                     className="flex justify-between items-center text-sm text-gray-700 dark:text-gray-300"
                   >
                     <span className="font-medium">{c.name}</span>
-                    <span className="text-gray-500 dark:text-gray-400">
-                      reputation {c.reputation}
-                    </span>
                   </li>
                 ))}
               </AnimatedList>
